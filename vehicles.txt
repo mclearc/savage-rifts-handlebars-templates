@@ -23,11 +23,11 @@ tags:
 
 ## Description
 {{!-- Sanitize and then replace Compendium and UUID links --}}
-{{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(Compendium|UUID)\\[.*?\\]') '')}}
+{{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(Compendium|UUID)\[.*?\]\s*') '')}}
 
 ## Equipment and Weapons
 {{#each items}}
   - **{{name}}**: 
     {{!-- Sanitize and then replace Compendium and UUID links in items' descriptions --}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(Compendium|UUID)\\[.*?\\]') '')}}
+    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(Compendium|UUID)\[.*?\]\s*') '')}}
 {{/each}}
