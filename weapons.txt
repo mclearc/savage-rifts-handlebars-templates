@@ -28,6 +28,7 @@ tags:
 {{/each}}
 
 ## Notes
-{{#each system.notes}}
-{{this}}
+{{#each (more-handlebars-helpers-split system.notes '|||')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') '$1')}}
 {{/each}}
+

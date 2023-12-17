@@ -15,10 +15,10 @@ tags:
 **Die Type:** d{{system.die.sides}}
 **Wild Die:** d{{system.wild-die.sides}}
 
-**Description:** 
+**Description:**
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{!-- Remove Foundry specific links --}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\[.*?\]' '') '@UUID\[.*?\]' '')}}
+  {{!-- Remove Foundry specific links and keep the word inside the curly brackets --}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') '$1')}}
 {{/each}}
 
 {{#if system.isCoreSkill}}
