@@ -24,7 +24,7 @@ tags:
 ## Description
 {{#each (more-handlebars-helpers-split system.description '|||')}}
   {{!-- Sequentially replace and sanitize --}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\[.*?\]' '') '@UUID\[.*?\]' '')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\\[.*?\\]' '') '@UUID\\[.*?\\]' '')}}
 {{/each}}
 
 ## Equipment and Weapons
@@ -32,6 +32,6 @@ tags:
   - **{{name}}**: 
     {{#each (more-handlebars-helpers-split system.description '|||')}}
       {{!-- Sequentially replace and sanitize, accounting for new lines --}}
-      {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\[.*?\]\s*' '') '@UUID\[.*?\]\s*' '')}}
+      {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\\[.*?\\]\\s*' '') '@UUID\\[.*?\\]\\s*' '')}}
     {{/each}}
 {{/each}}
