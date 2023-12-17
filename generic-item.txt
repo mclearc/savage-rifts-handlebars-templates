@@ -1,4 +1,3 @@
-{{#unless (or (hasTag tags "shield") (hasTag tags "armor") (hasTag tags "consumable") (hasTag tags "gear"))}}
 ---
 title: "{{title}}"
 icon: "{{icon}}"

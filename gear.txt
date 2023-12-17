@@ -27,4 +27,4 @@ tags:
 **Weight:** {{weight}} lb
 **Source:** {{source}}
 **Category:** {{category}}
-{{/with}}
+
