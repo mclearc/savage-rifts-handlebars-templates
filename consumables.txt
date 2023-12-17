@@ -24,7 +24,7 @@ tags:
 **Description:** 
 {{#each (more-handlebars-helpers-split system.description '|||')}}
   {{!-- Remove Foundry specific links --}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\\[.*?\\]' '') '@UUID\\[.*?\\]' '')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\[.*?\]' '') '@UUID\[.*?\]' '')}}
 {{/each}}
 
 **Equippable:** {{#if system.equippable}}Yes{{else}}No{{/if}}
