@@ -8,7 +8,7 @@ tags:
 ---
 
 # {{name}}
-![](z_assets/_images/{{img}}|width=150)
+![[z_assets/_images/{{img}}|150]]
 
 **Source:** {{system.source}}
 **Rank:** {{system.advances.rank}}

@@ -10,7 +10,7 @@ tags:
 ---
 
 # {{name}}
-![](z_assets/_images/{{img}}|width=150)
+![[z_assets/_images/{{img}}|150]]
 
 **Description:** 
 {{#each (more-handlebars-helpers-split system.description '|||')}}
