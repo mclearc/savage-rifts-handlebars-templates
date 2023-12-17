@@ -23,7 +23,8 @@ tags:
 
 ## Description
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{more-handlebars-helpers-sanitize this}}
+  {{!-- Remove Foundry specific links --}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\\[.*?\\]' '') '@UUID\\[.*?\\]' '')}}
 {{/each}}
 
 ## Equipment and Weapons
