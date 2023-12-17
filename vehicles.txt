@@ -29,5 +29,10 @@ tags:
 
 ## Equipment and Weapons
 {{#each items}}
-  - **{{name}}**: {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll system.description '@Compendium\[.*?\]' '') '@UUID\[.*?\]' '')}}
+  - **{{name}}**: 
+    {{#each (more-handlebars-helpers-split system.description '|||')}}
+      {{!-- Sequentially replace and sanitize --}}
+      {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this '@Compendium\[.*?\]' '') '@UUID\[.*?\]' '')}}
+    {{/each}}
 {{/each}}
+
