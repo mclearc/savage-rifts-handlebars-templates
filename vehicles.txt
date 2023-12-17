@@ -1,0 +1,32 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+  {{#each tags}}
+  - {{this}}
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Classification:** {{system.classification}}
+**Cost:** ${{system.cost}}
+**Crew Required:** {{system.crew.required.value}} (Max: {{system.crew.required.max}})
+**Crew Optional:** {{system.crew.optional.value}} (Max: {{system.crew.optional.max}})
+**Top Speed:** {{system.topspeed}}
+**Handling:** {{system.handling}}
+**Size:** {{system.size}}
+**Scale:** {{system.scale}}
+**Toughness:** {{system.toughness.total}} (Armor: {{system.toughness.armor}})
+**Max Wounds:** {{system.wounds.max}}
+
+## Description
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize this}}
+{{/each}}
+
+## Equipment and Weapons
+{{#each items}}
+- **{{name}}**: {{system.description}}
+{{/each}}

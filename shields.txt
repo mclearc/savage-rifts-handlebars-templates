@@ -1,0 +1,37 @@
+---
+title: "{{title}}"
+icon: "{{icon}}"
+aliases: "{{aliases}}"
+foundryId: "{{foundryId}}"
+tags:
+  {{#each tags}}
+  - "{{this}}"
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Type:** {{type}}
+**Source:** {{system.source}}
+**Parry:** {{system.parry}}
+**Cover:** {{system.cover}}
+**Minimum Strength:** {{system.minStr}}
+**Weight:** {{system.weight}} lb
+**Price:** {{system.price}} credits
+**Quantity:** {{system.quantity}}
+**Category:** {{system.category}}
+
+**Description:** 
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize this}}
+{{/each}}
+
+**Equippable:** {{#if system.equippable}}Yes{{else}}No{{/if}}
+**Equipment Status:** {{system.equipStatus}}
+**Notes:** {{system.notes}}
+
+**Actions:**
+{{#each system.actions.additional}}
+  - **{{@key}}:** {{this.name}} ({{this.type}})
+{{/each}}

@@ -1,0 +1,24 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+  {{#each tags}}
+  - {{this}}
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Source:** {{system.source}}
+**Category:** {{system.category}}
+
+**Description:** 
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize this}}
+{{/each}}
+
+**Requirements:**
+{{#each system.requirements}}
+- {{type}}: {{selector}} {{value}}
+{{/each}}

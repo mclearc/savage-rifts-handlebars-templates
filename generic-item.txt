@@ -1,0 +1,48 @@
+{{#unless (or (hasTag tags "shield") (hasTag tags "armor") (hasTag tags "consumable") (hasTag tags "gear"))}}
+---
+title: "{{title}}"
+icon: "{{icon}}"
+aliases: "{{aliases}}"
+foundryId: "{{foundryId}}"
+tags:
+  {{#each tags}}
+  - "{{this}}"
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Type:** {{type}}
+{{#if system.subtype}}**Subtype:** {{system.subtype}}{{/if}}
+**Source:** {{system.source}}
+{{#if system.price}}**Price:** {{system.price}} credits{{/if}}
+{{#if system.quantity}}**Quantity:** {{system.quantity}}{{/if}}
+{{#if system.weight}}**Weight:** {{system.weight}} lb{{/if}}
+{{#if system.parry}}**Parry:** {{system.parry}}{{/if}}
+{{#if system.cover}}**Cover:** {{system.cover}}{{/if}}
+{{#if system.charges}}**Charges:** {{system.charges.value}}/{{system.charges.max}}{{/if}}
+{{#if system.armor}}**Armor:** {{system.armor}}{{/if}}
+{{#if system.toughness}}**Toughness:** {{system.toughness}}{{/if}}
+{{#if system.category}}**Category:** {{system.category}}{{/if}}
+
+**Description:** 
+{{#with system}}
+  {{#if description}}
+    {{more-handlebars-helpers-sanitize description}}
+  {{/if}}
+{{/with}}   
+
+**Equippable:** {{#if system.equippable}}Yes{{else}}No{{/if}}
+{{#if system.equipStatus}}**Equipment Status:** {{system.equipStatus}}{{/if}}
+{{#if system.notes}}**Notes:** {{more-handlebars-helpers-sanitize system.notes}}{{/if}}
+
+**Actions:**
+{{#each system.actions.additional}}
+  - **{{@key}}:** {{this.name}} ({{this.type}})
+{{/each}}
+
+**Additional Information:**
+{{#if system.messageOnUse}}**Message On Use:** Yes{{else}}No{{/if}}
+{{#if system.destroyOnEmpty}}**Destroy On Empty:** Yes{{else}}No{{/if}}
+{{/unless}}

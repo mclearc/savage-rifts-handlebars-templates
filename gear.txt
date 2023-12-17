@@ -1,0 +1,30 @@
+---
+title: "{{title}}"
+icon: "{{icon}}"
+aliases: "{{aliases}}"
+foundryId: "{{foundryId}}"
+tags:
+  {{#each tags}}
+  - "{{this}}"
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Description:** 
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize this}}
+{{/each}}
+
+**Equipment Status:** {{equipStatus}}
+**Equippable:** {{#if equippable}}Yes{{else}}No{{/if}}
+**Vehicular:** {{#if isVehicular}}Yes{{else}}No{{/if}}
+**Modifications:** {{mods}}
+**Notes:** {{notes}}
+**Price:** {{price}} credits
+**Quantity:** {{quantity}}
+**Weight:** {{weight}} lb
+**Source:** {{source}}
+**Category:** {{category}}
+{{/with}}

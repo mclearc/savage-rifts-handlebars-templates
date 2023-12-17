@@ -1,0 +1,22 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+  {{#each tags}}
+  - {{this}}
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Source:** {{system.source}}
+
+**Description:** 
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize this}}
+{{/each}}
+
+{{#if system.major}}
+**Note:** This is a major hindrance.
+{{/if}}

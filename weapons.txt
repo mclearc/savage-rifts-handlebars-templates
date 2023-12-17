@@ -1,0 +1,33 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+  {{#each tags}}
+  - {{this}}
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Damage:** {{system.damage}}
+**Range:** {{system.range}}
+**Rate of Fire (RoF):** {{system.rof}}
+**AP:** {{system.ap}}
+**Ammo Type:** {{system.ammo}}
+**Shots:** {{system.shots}}
+**Reload Type:** {{system.reloadType}}
+**Min Strength:** d{{system.minStr}}
+**Weight:** {{system.weight}} lbs
+**Price:** ${{system.price}}
+**Source:** {{system.source}}
+
+## Special Actions
+{{#each system.actions.additional}}
+- **{{name}}:** {{#if type}}Type: {{type}}{{/if}} {{#if modifier}}Modifier: {{modifier}}{{/if}} {{#if resourcesUsed}}Resources Used: {{resourcesUsed}}{{/if}}
+{{/each}}
+
+## Notes
+{{#each system.notes}}
+{{this}}
+{{/each}}

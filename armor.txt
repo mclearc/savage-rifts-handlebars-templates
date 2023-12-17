@@ -1,0 +1,29 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+  {{#each tags}}
+  - {{this}}
+  {{/each}}
+---
+
+# {{name}}
+![](z_assets/_images/{{img}}|width=150)
+
+**Armor:** {{system.armor}}
+**Toughness:** {{system.toughness}}
+**Min Strength:** d{{system.minStr}}
+**Price:** ${{system.price}}
+**Weight:** {{system.weight}} lbs
+**Source:** {{system.source}}
+
+## Protection Locations
+- Arms: {{#if system.locations.arms}}Yes{{else}}No{{/if}}
+- Head: {{#if system.locations.head}}Yes{{else}}No{{/if}}
+- Legs: {{#if system.locations.legs}}Yes{{else}}No{{/if}}
+- Torso: {{#if system.locations.torso}}Yes{{else}}No{{/if}}
+
+**Description:** 
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize this}}
+{{/each}}
