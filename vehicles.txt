@@ -23,15 +23,16 @@ tags:
 
 ## Description
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{more-handlebars-helpers-replaceAll (more-handlebars-helpers-sanitize this) '@Compendium\\[.*?\\]\s*' ''}}
-  {{more-handlebars-helpers-replaceAll this '@UUID\\[.*?\\]\s*' ''}}
+  {{!-- Sanitize and then replace the unwanted patterns --}}
+  {{more-handlebars-helpers-replaceAll (more-handlebars-helpers-sanitize this) '@Compendium\\[.*?\\]' ''}}
+  {{more-handlebars-helpers-replaceAll (more-handlebars-helpers-sanitize this) '@UUID\\[.*?\\]' ''}}
 {{/each}}
 
 ## Equipment and Weapons
 {{#each items}}
   - **{{name}}**: 
     {{#each (more-handlebars-helpers-split system.description '|||')}}
-      {{more-handlebars-helpers-replaceAll (more-handlebars-helpers-sanitize this) '@Compendium\\[.*?\\]\s*' ''}}
-      {{more-handlebars-helpers-replaceAll this '@UUID\\[.*?\\]\s*' ''}}
+      {{more-handlebars-helpers-replaceAll (more-handlebars-helpers-sanitize this) '@Compendium\\[.*?\\]' ''}}
+      {{more-handlebars-helpers-replaceAll (more-handlebars-helpers-sanitize this) '@UUID\\[.*?\\]' ''}}
     {{/each}}
 {{/each}}
