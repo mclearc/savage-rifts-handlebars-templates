@@ -22,15 +22,18 @@ tags:
 **Max Wounds:** {{system.wounds.max}}
 
 ## Description
-{{!-- Sanitize and then replace Compendium and UUID links --}}
-{{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
+{{!-- Sanitize and then replace Compendium and UUID links, and Compendium extended links --}}
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ') (more-handlebars-helpers-regexp '\[\[Compendium\..*?\|(.*?)\]\]') '[[\1]]')}}
+{{/each}}
 
 ## Equipment and Weapons
 {{#each items}}
   - **{{name}}**: 
-    {{!-- Sanitize and then replace Compendium and UUID links in items' descriptions --}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
+    {{!-- Sanitize and then replace Compendium and UUID links, and Compendium extended links in items' descriptions --}}
+    {{#each (more-handlebars-helpers-split system.description '|||')}}
+      {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ') (more-handlebars-helpers-regexp '\[\[Compendium\..*?\|(.*?)\]\]') '[[\1]]')}}
+    {{/each}}
 {{/each}}
-
 
 

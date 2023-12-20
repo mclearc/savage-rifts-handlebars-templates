@@ -32,10 +32,12 @@ tags:
 ## Hindrances
 {{#each items}}
   {{#if (eq type "hindrance")}}
-- **{{name}}** ({{#if system.major}}Major{{else}}Minor{{/if}}): 
-  {{#each (more-handlebars-helpers-split system.description '|||')}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
-  {{/each}}
+- **{{name}}** ({{#if system.major}}Major{{else}}Minor{{/if}}):
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{!-- First, remove Foundry specific links and keep the word inside the curly brackets --}}
+  {{!-- Then, remove specific links like Compendium.swade-core-rules.swade-skills.Athletics|Athletics --}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ') (more-handlebars-helpers-regexp '\[\[Compendium\..*?\|(.*?)\]\]') '[[\1]]')}}
+{{/each}}
   {{/if}}
 {{/each}}
 
@@ -43,9 +45,11 @@ tags:
 {{#each items}}
   {{#if (eq type "edge")}}
 - **{{name}}:** 
-  {{#each (more-handlebars-helpers-split system.description '|||')}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
-  {{/each}}
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{!-- First, remove Foundry specific links and keep the word inside the curly brackets --}}
+  {{!-- Then, remove specific links like Compendium.swade-core-rules.swade-skills.Athletics|Athletics --}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ') (more-handlebars-helpers-regexp '\[\[Compendium\..*?\|(.*?)\]\]') '[[\1]]')}}
+{{/each}}
   {{/if}}
 {{/each}}
 
@@ -58,6 +62,8 @@ tags:
 
 ## Description
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{!-- Remove Foundry specific links --}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
+  {{!-- First, remove Foundry specific links and keep the word inside the curly brackets --}}
+  {{!-- Then, remove specific links like Compendium.swade-core-rules.swade-skills.Athletics|Athletics --}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ') (more-handlebars-helpers-regexp '\[\[Compendium\..*?\|(.*?)\]\]') '[[\1]]')}}
 {{/each}}
+
