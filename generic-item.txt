@@ -10,7 +10,7 @@ tags:
 ---
 
 # {{name}}
-![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|150]]
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
 
 **Type:** {{type}}
 {{#if system.subtype}}**Subtype:** {{system.subtype}}{{/if}}

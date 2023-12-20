@@ -8,7 +8,7 @@ tags:
 ---
 
 # {{name}}
-![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|150]]
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
 
 **Damage:** {{system.damage}}
 **Range:** {{system.range}}
@@ -29,6 +29,6 @@ tags:
 
 ## Notes
 {{#each (more-handlebars-helpers-split system.notes '|||')}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') '$1')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
 {{/each}}
 

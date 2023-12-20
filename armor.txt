@@ -8,7 +8,7 @@ tags:
 ---
 
 # {{name}}
-![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|150]]
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
 
 **Armor:** {{system.armor}}
 **Toughness:** {{system.toughness}}
@@ -26,5 +26,5 @@ tags:
 **Description:**
 {{#each (more-handlebars-helpers-split system.description '|||')}}
   {{!-- Remove Foundry specific links and keep the word inside the curly brackets --}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') '$1')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 {{/each}}

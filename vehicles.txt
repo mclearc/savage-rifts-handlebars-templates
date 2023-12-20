@@ -8,7 +8,7 @@ tags:
 ---
 
 # {{name}}
-![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|150]]
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
 
 **Classification:** {{system.classification}}
 **Cost:** ${{system.cost}}
@@ -23,13 +23,13 @@ tags:
 
 ## Description
 {{!-- Sanitize and then replace Compendium and UUID links --}}
-{{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') '$1')}}
+{{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 
 ## Equipment and Weapons
 {{#each items}}
   - **{{name}}**: 
     {{!-- Sanitize and then replace Compendium and UUID links in items' descriptions --}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') '$1')}}
+    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 {{/each}}
 
 

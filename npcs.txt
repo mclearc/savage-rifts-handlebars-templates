@@ -8,7 +8,7 @@ tags:
 ---
 
 # {{name}}
-![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|150]]
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
 
 **Source:** {{system.source}}
 **Rank:** {{system.advances.rank}}
@@ -34,7 +34,7 @@ tags:
   {{#if (eq type "hindrance")}}
 - **{{name}}** ({{#if system.major}}Major{{else}}Minor{{/if}}): 
   {{#each (more-handlebars-helpers-split system.description '|||')}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') '$1')}}
+    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
   {{/each}}
   {{/if}}
 {{/each}}
@@ -44,7 +44,7 @@ tags:
   {{#if (eq type "edge")}}
 - **{{name}}:** 
   {{#each (more-handlebars-helpers-split system.description '|||')}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') '$1')}}
+    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
   {{/each}}
   {{/if}}
 {{/each}}
@@ -59,5 +59,5 @@ tags:
 ## Description
 {{#each (more-handlebars-helpers-split system.description '|||')}}
   {{!-- Remove Foundry specific links --}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') '$1')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\\[.*?\\]\\{(.*?)\\}\\s*') ' $1 ')}}
 {{/each}}
