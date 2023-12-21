@@ -53,12 +53,18 @@ tags:
 {{#each items}}
   {{#if (eq type "ability")}}
 - **{{name}}**:
-  {{!-- Process and display ability description --}}
-  {{/if}}
-  {{#if (eq type "weapon")}}
-- **{{name}}:** Damage {{system.damage}}, Range {{system.range}}
-  {{!-- Include weapon description if available --}}
   {{#if system.description}}
+    {{!-- Process and display ability description --}}
+    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
+  {{/if}}
+  {{/if}}
+{{/each}}
+
+{{#each items}}
+  {{#if (eq type "weapon")}}
+- **{{name}}**: Damage {{system.damage}}, Range {{system.range}}
+  {{#if system.description}}
+    {{!-- Process and display weapon description --}}
     {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
   {{/if}}
   {{/if}}
