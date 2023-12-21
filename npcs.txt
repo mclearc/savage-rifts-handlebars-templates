@@ -34,7 +34,6 @@ tags:
   {{#if (eq type "hindrance")}}
 - **{{name}}** ({{#if system.major}}Major{{else}}Minor{{/if}}):
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{!-- Remove Foundry specific links and keep the word inside the curly brackets --}}
   {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 {{/each}}
   {{/if}}
@@ -45,27 +44,18 @@ tags:
   {{#if (eq type "edge")}}
 - **{{name}}:** 
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{!-- Remove Foundry specific links and keep the word inside the curly brackets --}}
   {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 {{/each}}
   {{/if}}
 {{/each}}
 
-## Abilities
+## Abilities and Special Equipment
 {{#each items}}
-  {{#if (eq type "ability")}}
+  {{#if (eq type "ability" "weapon" "equipment")}}
 - **{{name}}**:
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{!-- Remove Foundry specific links and keep the word inside the curly brackets --}}
   {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 {{/each}}
-  {{/if}}
-{{/each}}
-
-## Equipment
-{{#each items}}
-  {{#if (eq type "weapon")}}
-- **{{name}}:** Damage {{system.damage}}, Range {{system.range}}
   {{/if}}
 {{/each}}
 
@@ -76,7 +66,6 @@ tags:
 
 ## Description
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{!-- Remove Foundry specific links and keep the word inside the curly brackets --}}
   {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
 {{/each}}
 
