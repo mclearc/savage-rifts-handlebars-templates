@@ -1,0 +1,69 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+{{#each tags}}
+  - "{{this}}"
+{{/each}}
+---
+
+# {{name}}
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
+
+**Player:** {{playerName}}
+**Race:** {{system.race}}
+**Class:** {{system.class}}
+**Rank:** {{system.rank}}
+
+## Attributes
+{{#each system.attributes}}
+- **{{@key}}:** d{{this.die.sides}}{{#if this.wildDie}}, Wild Die: d{{this.wildDie.sides}}{{/if}}
+{{/each}}
+
+## Skills
+{{#each items}}
+  {{#if (eq type "skill")}}
+- **{{name}}:** d{{system.die.sides}}{{#if system.wildDie}}, Wild Die: d{{system.wildDie.sides}}{{/if}}
+  {{/if}}
+{{/each}}
+
+## Edges & Hindrances
+{{#each items}}
+  {{#if (eq type "edge")}}
+- **{{name}}:** Edge Description
+  {{else if (eq type "hindrance")}}
+- **{{name}}** ({{#if system.major}}Major{{else}}Minor{{/if}}): Hindrance Description
+  {{/if}}
+{{/each}}
+
+## Gear and Equipment
+{{#each items}}
+  {{#if (eq type "gear")}}
+- **{{name}}:** {{system.description}}
+  {{/if}}
+{{/each}}
+
+## Powers (if applicable)
+{{#each items}}
+  {{#if (eq type "power")}}
+- **{{name}}:** {{system.description}}
+  {{/if}}
+{{/each}}
+
+## Backstory
+{{#each (more-handlebars-helpers-split system.backstory '|||')}}
+  {{this}}
+{{/each}}
+
+## Goals
+{{system.goals}}
+
+## Relationships
+{{#each system.relationships}}
+- **{{this.name}}**: {{this.relation}}
+{{/each}}
+
+## Notes
+{{#each system.notes}}
+{{this}}
+{{/each}}

@@ -1,0 +1,51 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+{{#each tags}}
+  - "{{this}}"
+{{/each}}
+---
+
+# {{name}}
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
+
+**Type:** {{actorType}}
+**Source:** {{system.source}}
+
+## Attributes
+{{#each system.attributes}}
+- **{{@key}}:** {{this.value}}
+{{/each}}
+
+## Abilities
+{{#each items}}
+  {{#if (eq type "ability")}}
+- **{{name}}:** 
+  {{#if system.description}}
+    {{system.description}}
+  {{/if}}
+  {{/if}}
+{{/each}}
+
+## Characteristics
+- **Initiative:** {{system.initiative}}
+- **Movement:** {{system.movement}}
+- **Defenses:** 
+  - **Parry:** {{system.defenses.parry}}
+  - **Toughness:** {{system.defenses.toughness}}
+
+## Inventory
+{{#each items}}
+  {{#if (eq type "inventory")}}
+- **{{name}}:** {{system.quantity}} x
+  {{/if}}
+{{/each}}
+
+## Description
+{{system.description}}
+
+## Notes
+{{#each system.notes}}
+- {{this}}
+{{/each}}
