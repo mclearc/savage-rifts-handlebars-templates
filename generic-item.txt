@@ -44,4 +44,3 @@ tags:
 **Additional Information:**
 {{#if system.messageOnUse}}**Message On Use:** Yes{{else}}No{{/if}}
 {{#if system.destroyOnEmpty}}**Destroy On Empty:** Yes{{else}}No{{/if}}
-{{/unless}}
