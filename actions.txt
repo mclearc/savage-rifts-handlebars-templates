@@ -1,0 +1,38 @@
+---
+title: "{{name}}"
+aliases: "{{name}}"
+tags:
+  {{#each tags}}
+  - {{this}}
+  {{/each}}
+---
+
+# {{name}}
+![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
+
+**Type:** {{system.type}}
+**Rank Requirement:** {{system.rankRequirement}}
+**Power Points (PP) Cost:** {{system.ppCost}}
+**Range:** {{system.range}}
+**Duration:** {{system.duration}}
+
+**Description:**
+{{#each (more-handlebars-helpers-split system.description '|||')}}
+  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ') (more-handlebars-helpers-regexp '\[\[Compendium\..*?\|(.*?)\]\]') '[[\1]]')}}
+{{/each}}
+
+**Success Effects:**
+{{system.successEffects}}
+
+**Failure Effects:**
+{{system.failureEffects}}
+
+**Modifiers:**
+{{#each system.modifiers}}
+- {{this}}
+{{/each}}
+
+**Notes:**
+{{#each system.notes}}
+- {{this}}
+{{/each}}
