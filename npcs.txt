@@ -14,6 +14,10 @@ tags:
 **Rank:** {{system.advances.rank}}
 **Parry:** {{system.stats.parry.value}}
 **Toughness:** {{system.stats.toughness.value}} (Armor: {{system.stats.toughness.armor}})
+**Size:** {{system.stats.size}}
+{{#if system.stats.speed.value}}
+**Pace:** {{system.stats.speed.value}}
+{{/if}}
 
 ## Attributes
 - **Agility:** d{{system.attributes.agility.die.sides}}
@@ -22,13 +26,21 @@ tags:
 - **Strength:** d{{system.attributes.strength.die.sides}}
 - **Vigor:** d{{system.attributes.vigor.die.sides}}
 
+{{#if system.details.biography.value}}
+## Description
+{{system.details.biography.value}}
+{{/if}}
+
+{{#if items}}
 ## Skills
 {{#each items}}
   {{#if (eq type "skill")}}
 - **{{name}}:** d{{system.die.sides}}
   {{/if}}
 {{/each}}
+{{/if}}
 
+{{#if items}}
 ## Hindrances
 {{#each items}}
   {{#if (eq type "hindrance")}}
@@ -38,7 +50,9 @@ tags:
 {{/each}}
   {{/if}}
 {{/each}}
+{{/if}}
 
+{{#if items}}
 ## Edges
 {{#each items}}
   {{#if (eq type "edge")}}
@@ -48,63 +62,30 @@ tags:
 {{/each}}
   {{/if}}
 {{/each}}
-
-## Abilities and Special Equipment
-{{#each items}}
-  {{#if (eq type "ability")}}
-- **{{name}}**:
-  {{#if system.description}}
-    {{!-- Process and display ability description --}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
-  {{/if}}
-  {{/if}}
-{{/each}}
-
-{{#each items}}
-  {{#if (eq type "weapon")}}
-- **{{name}}**: Damage {{system.damage}}, Range {{system.range}}
-  {{#if system.description}}
-    {{!-- Process and display weapon description --}}
-    {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll system.description (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
-  {{/if}}
-  {{/if}}
-{{/each}}
-
-## Special Actions
-{{#each system.actions.additional}}
-- **{{name}}**: {{#if type}}Type: {{type}}{{/if}} {{#if modifier}}Modifier: {{modifier}}{{/if}} {{#if resourcesUsed}}Resources Used: {{resourcesUsed}}{{/if}}
-{{/each}}
-
-## Goals
-{{#if system.goals}}
-  {{system.goals}}
-{{else}}
-  Not Specified
 {{/if}}
 
-## Background
-{{#each (more-handlebars-helpers-split system.background '|||')}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
+## Special Abilities, Actions, or Equipment
+{{#each items}}
+  {{#if (eq type "ability")}}
+- **{{name}}**: {{system.description}}
+  {{/if}}
+  {{#if (eq type "armor")}}
+- **{{name}}**: {{system.description}}
+  {{/if}}
+  {{#if (eq type "weapon")}}
+- **{{name}}**: {{system.damage}}
+{{#if system.actions.additional}}
+{{#each system.actions.additional}}
+- **{{this.name}}**: {{system.description}}
+{{/each}}
+{{/if}}
+{{/if}}
 {{/each}}
 
-## Relationships
-{{#each system.relationships}}
-- **{{this.name}}**: {{this.relation}}. See [[{{this.link}}]] for more.
-{{/each}}
 
-## Links and References
-{{#each system.links}}
-- [{{this.label}}]({{this.url}})
-{{/each}}
-
-## Description
-{{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
-{{/each}}
-
+{{#if system.notes}}
 ## Notes
 {{#each system.notes}}
-{{this}}
+- {{this}}
 {{/each}}
-
-
+{{/if}}

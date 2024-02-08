@@ -17,7 +17,7 @@ tags:
 **Ammo Type:** {{system.ammo}}
 **Shots:** {{system.shots}}
 **Reload Type:** {{system.reloadType}}
-**Min Strength:** d{{system.minStr}}
+**Min Strength:** {{system.minStr}}
 **Weight:** {{system.weight}} lbs
 **Price:** ${{system.price}}
 **Source:** {{system.source}}
