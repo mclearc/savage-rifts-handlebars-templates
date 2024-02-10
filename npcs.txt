@@ -10,7 +10,6 @@ tags:
 # {{name}}
 ![[z_assets/_images/{{more-handlebars-helpers-replaceAll img '/' '-'}}|right|hm-sm]]
 
-**Source:** {{system.source}}
 **Rank:** {{system.advances.rank}}
 **Parry:** {{system.stats.parry.value}}
 **Toughness:** {{system.stats.toughness.value}} (Armor: {{system.stats.toughness.armor}})
@@ -20,11 +19,11 @@ tags:
 {{/if}}
 
 ## Attributes
-- **Agility:** d{{system.attributes.agility.die.sides}}
-- **Smarts:** d{{system.attributes.smarts.die.sides}}
-- **Spirit:** d{{system.attributes.spirit.die.sides}}
-- **Strength:** d{{system.attributes.strength.die.sides}}
-- **Vigor:** d{{system.attributes.vigor.die.sides}}
+- **Agility:** d{{system.attributes.agility.die.sides}}{{#if system.attributes.agility.die.modifier}}+{{system.attributes.agility.die.modifier}}{{/if}}
+- **Smarts:** d{{system.attributes.smarts.die.sides}}{{#if system.attributes.smarts.die.modifier}}+{{system.attributes.smarts.die.modifier}}{{/if}}
+- **Spirit:** d{{system.attributes.spirit.die.sides}}{{#if system.attributes.spirit.die.modifier}}+{{system.attributes.spirit.die.modifier}}{{/if}}
+- **Strength:** d{{system.attributes.strength.die.sides}}{{#if system.attributes.strength.die.modifier}}+{{system.attributes.strength.die.modifier}}{{/if}}
+- **Vigor:** d{{system.attributes.vigor.die.sides}}{{#if system.attributes.vigor.die.modifier}}+{{system.attributes.vigor.die.modifier}}{{/if}}
 
 {{#if system.details.biography.value}}
 ## Description
@@ -35,7 +34,7 @@ tags:
 ## Skills
 {{#each items}}
   {{#if (eq type "skill")}}
-- **{{name}}:** d{{system.die.sides}}
+- **{{name}}:** d{{system.die.sides}}{{#if system.die.modifier}}+{{system.die.modifier}}{{/if}}
   {{/if}}
 {{/each}}
 {{/if}}
@@ -46,7 +45,7 @@ tags:
   {{#if (eq type "hindrance")}}
 - **{{name}}** ({{#if system.major}}Major{{else}}Minor{{/if}}):
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
+  {{this}}
 {{/each}}
   {{/if}}
 {{/each}}
@@ -58,7 +57,7 @@ tags:
   {{#if (eq type "edge")}}
 - **{{name}}:** 
 {{#each (more-handlebars-helpers-split system.description '|||')}}
-  {{more-handlebars-helpers-sanitize (more-handlebars-helpers-replaceAll this (more-handlebars-helpers-regexp '@(?:Compendium|UUID)\[.*?\]\{(.*?)\}\s*') ' $1 ')}}
+  {{this}}
 {{/each}}
   {{/if}}
 {{/each}}
@@ -74,11 +73,7 @@ tags:
   {{/if}}
   {{#if (eq type "weapon")}}
 - **{{name}}**: {{system.damage}}
-{{#if system.actions.additional}}
-{{#each system.actions.additional}}
-- **{{this.name}}**: {{system.description}}
-{{/each}}
-{{/if}}
+- {{system.description}}
 {{/if}}
 {{/each}}
 
@@ -89,3 +84,4 @@ tags:
 - {{this}}
 {{/each}}
 {{/if}}
+
